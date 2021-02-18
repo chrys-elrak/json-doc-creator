@@ -1,1 +1,67 @@
-<h1>Hello world</h1>
+<div class="p-fluid p-grid">
+  <div class="p-field p-col-6 p-md-4" style="margin-top:30px;">
+    <label for="key">Key</label>
+    <input type="text" inputId="key" pInputText />
+  </div>
+  <div class="p-field p-col-6 p-md-4" style="margin-top:10px;">
+    <label for="types">Type</label>
+    <p-dropdown [autoDisplayFirst]="false" inputId="types" [options]="types" [(ngModel)]="selectedType"
+      optionValue="code" optionLabel="name" [style]="{'width':'15rem'}">
+    </p-dropdown>
+  </div>
+  <div style="margin-top:10px;">
+    <!-- HTML -->
+    <section *ngIf="selectedType === 'H'">
+      <label for="html">HTML</label>
+
+      <p-editor input="html" [(ngModel)]="htmlContent" [style]="{'height':'320px'}">
+        <ng-template pTemplate="header">
+          <span class="ql-format-group">
+            <span title="Bold" class="ql-format-button ql-bold"></span>
+            <span class="ql-format-separator"></span>
+            <span title="Italic" class="ql-format-button ql-italic"></span>
+            <span class="ql-format-separator"></span>
+            <span title="Underline" class="ql-format-button ql-underline"></span>
+            <span class="ql-format-separator"></span>
+            <span title="Strikethrough" class="ql-format-button ql-strike"></span>
+          </span>
+        </ng-template>
+      </p-editor>
+    </section>
+    <!-- DATE TIME-->
+    <section *ngIf="selectedType === 'DT'">
+      <label for="datetime">Date & Time</label>
+      <p-calendar inputId="datetime" showTime="true" hourFormat="24"></p-calendar>
+    </section>
+    <!-- DATE -->
+    <section *ngIf="selectedType === 'D'">
+      <label for="date">Date</label>
+      <p-calendar inputId="date"></p-calendar>
+    </section>
+    <!-- TIME -->
+    <section *ngIf="selectedType === 'T'">
+      <label for="time">Time</label>
+      <p-calendar [timeOnly]="true" inputId="time"></p-calendar>
+    </section>
+    <!-- STRING -->
+    <section *ngIf="selectedType === 'S'">
+      <label for="string">String</label>
+      <textarea idInput="string" [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+    </section>
+    <!-- NUMBER -->
+    <section *ngIf="selectedType === 'N'">
+      <label for="number">Number</label>
+      <p-inputNumber [showButtons]="true" buttonLayout="number" inputId="number" spinnerMode="number" [step]="1"
+        [showButtons]="true">
+      </p-inputNumber>
+    </section>
+    <!-- BOOLEAN -->
+    <section *ngIf="selectedType === 'B'">
+      <h3>Boolean</h3>
+      <p-inputSwitch idInput="boolean"></p-inputSwitch>
+    </section>
+  </div>
+  <div style="margin-top: 20px;">
+    <p-splitButton label="Save & New" icon="pi pi-plus" [model]="items"></p-splitButton>
+  </div>
+</div>
