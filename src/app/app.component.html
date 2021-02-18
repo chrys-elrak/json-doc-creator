@@ -1,4 +1,8 @@
-<div class="p-fluid p-grid"><p-toast></p-toast>
+<div class="p-fluid p-grid">
+  <div class="p-text-center">
+    <h1>JSON DOC CREATOR</h1>
+  </div>
+  <p-toast></p-toast>
   <p-toast position="bottom-center" key="bc"></p-toast>
   <p-messages *ngIf="output.hasOwnProperty(data.key)" [(value)]="message"></p-messages>
   <button pButton pRipple type="button" *ngIf="output.hasOwnProperty(data.key)" icon="pi pi-info" (click)="showInfo()"
@@ -70,9 +74,10 @@
     <p-splitButton label="Save" icon="pi pi-plus" (click)="save()" [model]="items"></p-splitButton>
   </div>
 </div>
-<div style="margin-top: 100px;">
+<div style="margin-top: 100px; overflow: scroll;">
   <p-panel header="Output:">
     <pre>{{output | json}}</pre>
   
   </p-panel>
+  <p-scrollTop></p-scrollTop>
 </div>

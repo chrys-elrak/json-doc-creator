@@ -19,6 +19,7 @@ import {MessagesModule} from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
 import {PanelModule} from 'primeng/panel';
+import {ScrollTopModule} from 'primeng/scrolltop';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {PanelModule} from 'primeng/panel';
     BrowserModule, FormsModule, CommonModule, HttpClientModule, BrowserAnimationsModule,
     EditorModule, InputTextModule, ListboxModule, DropdownModule, CalendarModule,
     InputTextareaModule, InputNumberModule, ButtonModule, SplitButtonModule,
-    MessagesModule, InputSwitchModule, MessageModule, ToastModule, PanelModule
+    MessagesModule, InputSwitchModule, MessageModule, ToastModule, PanelModule,
+    ScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent]
