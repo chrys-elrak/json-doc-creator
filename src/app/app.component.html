@@ -1,20 +1,24 @@
-<div class="p-fluid p-grid">
+<div class="p-fluid p-grid"><p-toast></p-toast>
+  <p-toast position="bottom-center" key="bc"></p-toast>
+  <p-messages *ngIf="output.hasOwnProperty(data.key)" [(value)]="message"></p-messages>
+  <button pButton pRipple type="button" *ngIf="output.hasOwnProperty(data.key)" icon="pi pi-info" (click)="showInfo()"
+    class="p-button-rounded p-button-outlined"></button>
   <div class="p-field p-col-6 p-md-4" style="margin-top:30px;">
     <label for="key">Key</label>
-    <input type="text" inputId="key" pInputText />
+    <input [ngModel]="data.key" (ngModelChange)="keyChange($event)" type="text" inputId="key" pInputText />
   </div>
   <div class="p-field p-col-6 p-md-4" style="margin-top:10px;">
     <label for="types">Type</label>
-    <p-dropdown [autoDisplayFirst]="false" inputId="types" [options]="types" [(ngModel)]="selectedType"
+    <p-dropdown [autoDisplayFirst]="false" inputId="types" [options]="types" (ngModelChange)="typeChange($event)" [ngModel]="data.type"
       optionValue="code" optionLabel="name" [style]="{'width':'15rem'}">
     </p-dropdown>
   </div>
   <div style="margin-top:10px;">
     <!-- HTML -->
-    <section *ngIf="selectedType === 'H'">
+    <section *ngIf="data.type === 'H'">
       <label for="html">HTML</label>
 
-      <p-editor input="html" [(ngModel)]="htmlContent" [style]="{'height':'320px'}">
+      <p-editor input="html" [(ngModel)]="data.value" [style]="{'height':'320px'}">
         <ng-template pTemplate="header">
           <span class="ql-format-group">
             <span title="Bold" class="ql-format-button ql-bold"></span>
@@ -29,39 +33,46 @@
       </p-editor>
     </section>
     <!-- DATE TIME-->
-    <section *ngIf="selectedType === 'DT'">
+    <section *ngIf="data.type === 'DT'">
       <label for="datetime">Date & Time</label>
-      <p-calendar inputId="datetime" showTime="true" hourFormat="24"></p-calendar>
+      <p-calendar [(ngModel)]="data.value" inputId="datetime" showTime="true" hourFormat="24"></p-calendar>
     </section>
     <!-- DATE -->
-    <section *ngIf="selectedType === 'D'">
+    <section *ngIf="data.type === 'D'">
       <label for="date">Date</label>
-      <p-calendar inputId="date"></p-calendar>
+      <p-calendar [(ngModel)]="data.value" inputId="date"></p-calendar>
     </section>
     <!-- TIME -->
-    <section *ngIf="selectedType === 'T'">
+    <section *ngIf="data.type === 'T'">
       <label for="time">Time</label>
-      <p-calendar [timeOnly]="true" inputId="time"></p-calendar>
+      <p-calendar [(ngModel)]="data.value" [timeOnly]="true" inputId="time"></p-calendar>
     </section>
     <!-- STRING -->
-    <section *ngIf="selectedType === 'S'">
+    <section *ngIf="data.type === 'S'">
       <label for="string">String</label>
-      <textarea idInput="string" [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+      <textarea [(ngModel)]="data.value" idInput="string" [rows]="5" [cols]="30" pInputTextarea
+        autoResize="autoResize"></textarea>
     </section>
     <!-- NUMBER -->
-    <section *ngIf="selectedType === 'N'">
+    <section *ngIf="data.type === 'N'">
       <label for="number">Number</label>
-      <p-inputNumber [showButtons]="true" buttonLayout="number" inputId="number" spinnerMode="number" [step]="1"
-        [showButtons]="true">
+      <p-inputNumber [(ngModel)]="data.value" [showButtons]="true" buttonLayout="number" inputId="number"
+        spinnerMode="number" [step]="1" [showButtons]="true">
       </p-inputNumber>
     </section>
     <!-- BOOLEAN -->
-    <section *ngIf="selectedType === 'B'">
+    <section *ngIf="data.type === 'B'">
       <h3>Boolean</h3>
-      <p-inputSwitch idInput="boolean"></p-inputSwitch>
+      <p-inputSwitch [(ngModel)]="data.value" idInput="boolean"></p-inputSwitch>
     </section>
   </div>
   <div style="margin-top: 20px;">
-    <p-splitButton label="Save & New" icon="pi pi-plus" [model]="items"></p-splitButton>
+    <p-splitButton label="Save" icon="pi pi-plus" (click)="save()" [model]="items"></p-splitButton>
   </div>
+</div>
+<div style="margin-top: 100px;">
+  <p-panel header="Output:">
+    <pre>{{output | json}}</pre>
+  
+  </p-panel>
 </div>

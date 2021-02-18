@@ -15,6 +15,10 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {ButtonModule} from 'primeng/button';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {MessagesModule} from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
     BrowserModule, FormsModule, CommonModule, HttpClientModule, BrowserAnimationsModule,
     EditorModule, InputTextModule, ListboxModule, DropdownModule, CalendarModule,
     InputTextareaModule, InputNumberModule, ButtonModule, SplitButtonModule,
-    InputSwitchModule,
+    MessagesModule, InputSwitchModule, MessageModule, ToastModule, PanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]
